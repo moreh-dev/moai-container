@@ -1,0 +1,7 @@
+#!/command/with-contenv bash
+
+exec 2>&1
+exec /usr/bin/code-server \
+    --bind-addr 0.0.0.0:"${PORT}" \
+    --disable-telemetry \
+    --auth none
