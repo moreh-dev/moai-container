@@ -1,7 +1,15 @@
 #!/command/with-contenv bash
 
+cd /root || {
+    echo "code-server: error: failed to change directory to /root"
+    exit 1
+}
+
 exec 2>&1
 exec /usr/bin/code-server \
     --bind-addr 0.0.0.0:"${PORT}" \
     --disable-telemetry \
-    --auth none
+    --disable-update-check \
+    --disable-workspace-trust \
+    --auth none \
+    /root
