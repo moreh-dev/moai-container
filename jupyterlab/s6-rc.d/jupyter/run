@@ -1,0 +1,17 @@
+#!/command/with-contenv bash
+
+cd /root || {
+    echo "jupyterlab: error: failed to change directory to /root"
+    exit 1
+}
+
+exec 2>&1
+exec /usr/local/bin/jupyter lab \
+    --allow-root \
+    --no-browser \
+    --ip=0.0.0.0 \
+    --port="${PORT}" \
+    --ServerApp.password="" \
+    --IdentityProvider.token="" \
+    --ServerApp.terminado_settings="{'shell_command':['$SHELL']}" \
+    --notebook-dir="/root"
